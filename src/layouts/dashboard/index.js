@@ -20,11 +20,11 @@ import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
 // Dashboard components
 import MDTypography from '../../components/MDTypography';
 import DataTable from '../../examples/Tables/DataTable';
-import authorsTableData from '../tables/data/authorsTableData';
+import { transactionsTableData } from '../transactions/data/transactionsTableData';
 
 function Dashboard() {
  const {sales, tasks} = reportsLineChartData;
- const {columns, rows} = authorsTableData();
+ const {columns, rows} = transactionsTableData();
 
  return (
    <DashboardLayout>
@@ -157,7 +157,7 @@ function Dashboard() {
            coloredShadow="info"
          >
           <MDTypography variant="h6" color="white">
-           Financial table
+           Transactions
           </MDTypography>
          </MDBox>
          <MDBox pt={3}>

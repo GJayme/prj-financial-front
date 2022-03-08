@@ -1,5 +1,5 @@
 import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
+import { Transactions } from 'layouts/transactions';
 import Billing from "layouts/billing";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
@@ -21,11 +21,11 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
+    name: "Transactions",
+    key: "transactions",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
+    route: "/transactions",
+    component: <Transactions />,
   },
   {
     type: "collapse",
