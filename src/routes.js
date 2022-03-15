@@ -1,5 +1,5 @@
 import Dashboard from "layouts/dashboard";
-import { Transactions } from 'layouts/transactions';
+import { Transactions } from 'components/TransactionTable';
 import Billing from "layouts/billing";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";

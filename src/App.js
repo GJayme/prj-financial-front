@@ -9,11 +9,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Icon from '@mui/material/Icon';
 
 // Material Dashboard 2 React components
-import MDBox from 'components/MDBox';
+import MDBox from 'components/common/MDBox';
 
 // Material Dashboard 2 React example components
-import Sidenav from 'examples/Sidenav';
-import Configurator from 'examples/Configurator';
+import Sidenav from 'components/Sidenav';
+import Configurator from 'components/Configurator';
 
 // Material Dashboard 2 React themes
 import theme from 'assets/theme';

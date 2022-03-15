@@ -20,9 +20,9 @@ import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "components/common/MDBox";
+import MDTypography from "components/common/MDTypography";
+import MDButton from "components/common/MDButton";
 
 // Images
 import masterCardLogo from "assets/images/logos/mastercard.png";

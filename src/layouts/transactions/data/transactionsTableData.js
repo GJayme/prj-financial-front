@@ -1,5 +1,5 @@
-import MDBox from 'components/MDBox';
-import MDTypography from 'components/MDTypography';
+import MDBox from 'components/common/MDBox';
+import MDTypography from 'components/common/MDTypography';
 import Icon from '@mui/material/Icon';
 
 export function transactionsTableData() {

@@ -22,11 +22,11 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 // Soft UI Dashboard React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "components/common/MDBox";
+import MDTypography from "components/common/MDTypography";
 
 // Soft UI Dashboard Materail-UI example components
-import DataTable from "examples/Tables/DataTable";
+import DataTable from "components/Tables/DataTable";
 
 // Data
 import data from "layouts/dashboard/components/Projects/data";

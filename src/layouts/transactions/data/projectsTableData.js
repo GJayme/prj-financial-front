@@ -4,10 +4,10 @@
 import Icon from '@mui/material/Icon';
 
 // Soft UI Dashboard React components
-import MDBox from 'components/MDBox';
-import MDTypography from 'components/MDTypography';
-import MDAvatar from 'components/MDAvatar';
-import MDProgress from 'components/MDProgress';
+import MDBox from 'components/common/MDBox';
+import MDTypography from 'components/common/MDTypography';
+import MDAvatar from 'components/common/MDAvatar';
+import MDProgress from 'components/common/MDProgress';
 
 // Images
 import LogoAsana from 'assets/images/small-logos/logo-asana.svg';

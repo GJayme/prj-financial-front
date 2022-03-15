@@ -3,28 +3,50 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 
 // Material Dashboard 2 React components
-import MDBox from 'components/MDBox';
+import MDBox from 'components/common/MDBox';
 
 // Material Dashboard 2 React example components
-import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
-import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
-import Footer from 'examples/Footer';
-import ReportsBarChart from 'examples/Charts/BarCharts/ReportsBarChart';
-import ReportsLineChart from 'examples/Charts/LineCharts/ReportsLineChart';
-import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatisticsCard';
+import DashboardLayout from 'components/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'components/Navbars/DashboardNavbar';
+import Footer from 'components/Footer';
+import ReportsBarChart from 'components/Charts/BarCharts/ReportsBarChart';
+import ReportsLineChart from 'components/Charts/LineCharts/ReportsLineChart';
+import ComplexStatisticsCard from 'components/Cards/StatisticsCards/ComplexStatisticsCard';
 
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
 
 // Dashboard components
-import MDTypography from '../../components/MDTypography';
-import DataTable from '../../examples/Tables/DataTable';
-import { transactionsTableData } from '../transactions/data/transactionsTableData';
+import MDTypography from '../../components/common/MDTypography';
+import DataTable from '../../components/Tables/DataTable';
+import { useTransaction } from '../../context/transaction';
+import { useCallback, useEffect } from 'react';
+import { findAllTransaction } from '../../service/transactionService';
+import { transactionRows } from '../../utils/fillTables';
 
 function Dashboard() {
  const {sales, tasks} = reportsLineChartData;
- const {columns, rows} = transactionsTableData();
+ const {transactions, setTransactions} = useTransaction();
+
+ const allTransactionArray = useCallback(async () => {
+  const response = await findAllTransaction();
+  setTransactions(response);
+ }, [setTransactions]);
+
+ useEffect(() => {
+  allTransactionArray().then();
+ }, [allTransactionArray]);
+
+ const columns = [
+  {Header: 'value', accessor: 'value', align: 'left'},
+  {Header: 'date', accessor: 'date', align: 'center'},
+  {Header: 'type', accessor: 'type', align: 'center'},
+  {Header: 'category', accessor: 'category', align: 'center'},
+  {Header: 'actions', accessor: 'actions', align: 'center'}
+ ];
+
+ const rows = transactionRows(transactions);
 
  return (
    <DashboardLayout>

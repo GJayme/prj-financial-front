@@ -17,9 +17,9 @@ Coded by www.creative-tim.com
 import Card from "@mui/material/Card";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+import MDBox from "components/common/MDBox";
+import MDTypography from "components/common/MDTypography";
+import MDButton from "components/common/MDButton";
 
 // Billing page components
 import Invoice from "layouts/billing/components/Invoice";

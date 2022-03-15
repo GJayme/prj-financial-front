@@ -21,10 +21,10 @@ import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
+import MDBox from "components/common/MDBox";
+import MDTypography from "components/common/MDTypography";
+import MDInput from "components/common/MDInput";
+import MDButton from "components/common/MDButton";
 
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
