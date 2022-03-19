@@ -182,15 +182,16 @@ function Dashboard() {
            Transactions
           </MDTypography>
          </MDBox>
-         <MDBox pt={3}>
-          <DataTable
-            table={{columns, rows}}
-            isSorted={false}
-            entriesPerPage={false}
-            showTotalEntries={false}
-            noEndBorder
-          />
-         </MDBox>
+         {transactions !== null &&
+           <MDBox pt={3}>
+            <DataTable
+              table={{columns, rows}}
+              isSorted={false}
+              entriesPerPage={false}
+              showTotalEntries={false}
+              noEndBorder
+            />
+           </MDBox>}
         </Card>
        </Grid>
       </Grid>
