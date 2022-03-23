@@ -8,10 +8,10 @@ import MDBox from 'components/common/MDBox';
 // Material Dashboard 2 React example components
 import DashboardLayout from 'components/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'components/Navbars/DashboardNavbar';
-import Footer from 'components/Footer';
 import ReportsBarChart from 'components/Charts/BarCharts/ReportsBarChart';
 import ReportsLineChart from 'components/Charts/LineCharts/ReportsLineChart';
 import ComplexStatisticsCard from 'components/Cards/StatisticsCards/ComplexStatisticsCard';
+import Modal from '../../components/TransactionModal';
 
 // Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
@@ -21,13 +21,19 @@ import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
 import MDTypography from '../../components/common/MDTypography';
 import DataTable from '../../components/Tables/DataTable';
 import { useTransaction } from '../../context/transaction';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { findAllTransaction } from '../../service/transactionService';
 import { transactionRows } from '../../utils/fillTables';
+import IconButton from '@mui/material/IconButton';
+import { Icon } from '@mui/material';
+import { navbarIconButton } from '../../components/Navbars/DashboardNavbar/styles';
+import Footer from '../../components/Footer';
+
 
 function Dashboard() {
  const {sales, tasks} = reportsLineChartData;
  const {transactions, setTransactions} = useTransaction();
+ const [openAddTransactionMenu, setOpenAddTransactionMenu] = useState(false);
 
  const allTransactionArray = useCallback(async () => {
   const response = await findAllTransaction();
@@ -154,16 +160,6 @@ function Dashboard() {
        </Grid>
       </Grid>
      </MDBox>
-     {/*<MDBox>*/}
-     {/*  <Grid container spacing={3}>*/}
-     {/*    <Grid item xs={12} md={6} lg={8}>*/}
-     {/*      <Projects />*/}
-     {/*    </Grid>*/}
-     {/*    <Grid item xs={12} md={6} lg={4}>*/}
-     {/*      <OrdersOverview />*/}
-     {/*    </Grid>*/}
-     {/*  </Grid>*/}
-     {/*</MDBox>*/}
      <MDBox pt={3}>
       <Grid container spacing={6}>
        <Grid item xs={12}>
@@ -178,9 +174,22 @@ function Dashboard() {
            borderRadius="lg"
            coloredShadow="info"
          >
-          <MDTypography variant="h6" color="white">
-           Transactions
-          </MDTypography>
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+           <MDTypography variant="h6" color="white">
+            Transactions
+           </MDTypography>
+           <div style={{width: "25px", height: "25px", borderRadius: "100%", backgroundColor: "white", display: "flex", justifyContent: 'center'}}>
+            <IconButton
+              size="small"
+              disableRipple
+              color="secondary"
+              sx={navbarIconButton}
+              onClick={() => setOpenAddTransactionMenu(true)}
+            >
+             <Icon>add_icon</Icon>
+            </IconButton>
+           </div>
+          </div>
          </MDBox>
          {transactions !== null &&
            <MDBox pt={3}>
@@ -196,9 +205,11 @@ function Dashboard() {
        </Grid>
       </Grid>
      </MDBox>
-
     </MDBox>
     <Footer/>
+
+    <Modal title="Add new transaction" onClose={() => setOpenAddTransactionMenu(false)} show={openAddTransactionMenu}/>
+
    </DashboardLayout>
  );
 }

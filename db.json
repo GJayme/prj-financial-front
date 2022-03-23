@@ -2,94 +2,17 @@
   "transactions": [
     {
       "id": 1,
-      "value": 2000.60,
+      "value": 2000.6,
       "date": "20/02/2022",
       "type": "deposit",
       "category": "salário"
     },
     {
-      "id": 2,
-      "value": 800.00,
-      "date": "20/02/2022",
-      "type": "withdraw",
-      "category": "aluguel"
-    },
-    {
-      "id": 3,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 4,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 5,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 6,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 7,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 8,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 9,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 10,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 11,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 12,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "id": 13,
-      "value": 2000.60,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
+      "value": "999",
+      "date": "2022-03-09",
+      "type": "a",
+      "category": "a",
+      "id": 2
     }
   ]
 }
