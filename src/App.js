@@ -30,6 +30,7 @@ import createCache from '@emotion/cache';
 
 // Material Dashboard 2 React routes
 import routes from 'routes';
+import sidenavRoutes from './components/Sidenav/SidenavRoutes';
 
 // Material Dashboard 2 React contexts
 import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from 'context';
@@ -141,7 +142,7 @@ export default function App() {
           color={sidenavColor}
           brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
           brandName="Financial flow"
-          routes={routes}
+          routes={sidenavRoutes}
           onMouseEnter={handleOnMouseEnter}
           onMouseLeave={handleOnMouseLeave}
         />
@@ -165,7 +166,7 @@ export default function App() {
          color={sidenavColor}
          brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
          brandName="Financial flow"
-         routes={routes}
+         routes={sidenavRoutes}
          onMouseEnter={handleOnMouseEnter}
          onMouseLeave={handleOnMouseLeave}
        />

@@ -1,6 +1,5 @@
 import Dashboard from "layouts/dashboard";
 import { Transactions } from 'components/TransactionTable';
-import Billing from "layouts/billing";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
@@ -34,6 +33,21 @@ const routes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/profile",
     component: <Profile />,
+  },
+  {
+    type: "collapse",
+    name: "Profile",
+    key: "profile",
+    route: "/",
+    component: <SignIn />,
+  },
+  {
+    type: "collapse",
+    name: "Profile",
+    key: "profile",
+    icon: <Icon fontSize="small">person</Icon>,
+    route: "/sign-up",
+    component: <SignUp />,
   }
 ];
 
