@@ -1,32 +1,3 @@
 {
-  "transactions": [
-    {
-      "id": 1,
-      "value": 2000.6,
-      "date": "20/02/2022",
-      "type": "deposit",
-      "category": "salário"
-    },
-    {
-      "value": "999",
-      "date": "2022-03-09",
-      "type": "a",
-      "category": "a",
-      "id": 2
-    },
-    {
-      "value": "666",
-      "date": "2022-03-19",
-      "type": "Gastei",
-      "category": "Muito",
-      "id": 3
-    },
-    {
-      "value": "5",
-      "date": "2022-03-09",
-      "type": "cu",
-      "category": "sujo",
-      "id": 4
-    }
-  ]
+  "transactions": []
 }

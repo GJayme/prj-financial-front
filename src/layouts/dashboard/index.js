@@ -1,58 +1,18 @@
-// @mui material components
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-
-// Material Dashboard 2 React components
 import MDBox from 'components/common/MDBox';
-
-// Material Dashboard 2 React example components
 import DashboardLayout from 'components/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'components/Navbars/DashboardNavbar';
 import ReportsBarChart from 'components/Charts/BarCharts/ReportsBarChart';
 import ReportsLineChart from 'components/Charts/LineCharts/ReportsLineChart';
 import ComplexStatisticsCard from 'components/Cards/StatisticsCards/ComplexStatisticsCard';
-import Modal from '../../components/TransactionModal';
-
-// Data
 import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
-
-// Dashboard components
-import MDTypography from '../../components/common/MDTypography';
-import DataTable from '../../components/Tables/DataTable';
-import { useTransaction } from '../../context/transaction';
-import { useCallback, useEffect, useState } from 'react';
-import { findAllTransaction } from '../../service/transactionService';
-import { transactionRows } from '../../utils/fillTables';
-import IconButton from '@mui/material/IconButton';
-import { Icon } from '@mui/material';
-import { navbarIconButton } from '../../components/Navbars/DashboardNavbar/styles';
 import Footer from '../../components/Footer';
+import { TransactionTable } from '../../components/TransactionTable';
 
 
 function Dashboard() {
  const {sales, tasks} = reportsLineChartData;
- const {transactions, setTransactions} = useTransaction();
- const [openAddTransactionMenu, setOpenAddTransactionMenu] = useState(false);
-
- const allTransactionArray = useCallback(async () => {
-  const response = await findAllTransaction();
-  setTransactions(response);
- }, [setTransactions]);
-
- useEffect(() => {
-  allTransactionArray().then();
- }, [allTransactionArray]);
-
- const columns = [
-  {Header: 'value', accessor: 'value', align: 'left'},
-  {Header: 'date', accessor: 'date', align: 'center'},
-  {Header: 'type', accessor: 'type', align: 'center'},
-  {Header: 'category', accessor: 'category', align: 'center'},
-  {Header: 'actions', accessor: 'actions', align: 'center'}
- ];
-
- const rows = transactionRows(transactions);
 
  return (
    <DashboardLayout>
@@ -160,56 +120,9 @@ function Dashboard() {
        </Grid>
       </Grid>
      </MDBox>
-     <MDBox pt={3}>
-      <Grid container spacing={6}>
-       <Grid item xs={12}>
-        <Card>
-         <MDBox
-           mx={2}
-           mt={-3}
-           py={3}
-           px={2}
-           variant="gradient"
-           bgColor="info"
-           borderRadius="lg"
-           coloredShadow="info"
-         >
-          <div style={{display: 'flex', justifyContent: 'space-between'}}>
-           <MDTypography variant="h6" color="white">
-            Transactions
-           </MDTypography>
-           <div style={{width: "25px", height: "25px", borderRadius: "100%", backgroundColor: "white", display: "flex", justifyContent: 'center'}}>
-            <IconButton
-              size="small"
-              disableRipple
-              color="secondary"
-              sx={navbarIconButton}
-              onClick={() => setOpenAddTransactionMenu(true)}
-            >
-             <Icon>add_icon</Icon>
-            </IconButton>
-           </div>
-          </div>
-         </MDBox>
-         {transactions !== null &&
-           <MDBox pt={3}>
-            <DataTable
-              table={{columns, rows}}
-              isSorted={false}
-              entriesPerPage={false}
-              showTotalEntries={false}
-              noEndBorder
-            />
-           </MDBox>}
-        </Card>
-       </Grid>
-      </Grid>
-     </MDBox>
+     <TransactionTable/>
     </MDBox>
     <Footer/>
-
-    <Modal title="Add new transaction" onClose={() => setOpenAddTransactionMenu(false)} show={openAddTransactionMenu}/>
-
    </DashboardLayout>
  );
 }

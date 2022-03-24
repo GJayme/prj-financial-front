@@ -3,11 +3,7 @@ import axios from 'axios';
 const findAllTransaction = async () => {
  try {
   const response = await axios.get('http://localhost:4200/transactions');
-  if (response.data.length !== 0) {
-   return response.data;
-  } else {
-   console.log('Error to find all transactions.');
-  }
+  return response.data;
  } catch (e) {
   console.log(e);
  }
@@ -21,5 +17,12 @@ const addNewTransaction = async (transaction) => {
  }
 };
 
+const removeTransaction = async (transactionId) => {
+ try {
+  await axios.delete('http://localhost:4200/transactions/' + transactionId);
+ } catch (e) {
+ }
+};
 
-export { findAllTransaction, addNewTransaction };
+
+export { findAllTransaction, addNewTransaction, removeTransaction };

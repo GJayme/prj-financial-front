@@ -1,5 +1,5 @@
 import Dashboard from "layouts/dashboard";
-import { Transactions } from 'components/TransactionTable';
+import { Transactions } from 'layouts/transaction';
 import Profile from "layouts/profile";
 
 // @mui icons
@@ -22,14 +22,14 @@ const sidenavRoutes = [
   route: "/transactions",
   component: <Transactions />,
  },
- {
-  type: "collapse",
-  name: "Profile",
-  key: "profile",
-  icon: <Icon fontSize="small">person</Icon>,
-  route: "/profile",
-  component: <Profile />,
- }
+ // {
+ //  type: "collapse",
+ //  name: "Profile",
+ //  key: "profile",
+ //  icon: <Icon fontSize="small">person</Icon>,
+ //  route: "/profile",
+ //  component: <Profile />,
+ // }
 ];
 
 export default sidenavRoutes;
