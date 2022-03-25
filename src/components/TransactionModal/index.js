@@ -31,8 +31,8 @@ const Modal = props => {
  }, []);
 
  async function handleAddNewTransaction() {
-  await addNewTransaction(transactionToAdd);
-  setTransactions([...transactions, transactionToAdd]);
+  let response = await addNewTransaction(transactionToAdd);
+  setTransactions([...transactions, response]);
   setTransaction({});
   props.onClose();
  }

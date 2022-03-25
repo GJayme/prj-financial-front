@@ -11,7 +11,8 @@ const findAllTransaction = async () => {
 
 const addNewTransaction = async (transaction) => {
  try {
-  await axios.post('http://localhost:4200/transactions', transaction);
+  let response = await axios.post('http://localhost:4200/transactions', transaction);
+  return response.data;
  } catch (e) {
   console.log(e);
  }

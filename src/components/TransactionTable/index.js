@@ -10,10 +10,10 @@ import DataTable from '../Tables/DataTable';
 import Modal from '../TransactionModal';
 import { useCallback, useEffect, useState } from 'react';
 import { useTransaction } from '../../context/transaction';
-import transition from 'react-transition-group/Transition';
 
 function TransactionTable() {
  const [openAddTransactionMenu, setOpenAddTransactionMenu] = useState(false);
+ const [editTransaction, setEditTransaction] = useState({});
  const {transactions, setTransactions} = useTransaction();
 
  const allTransactionArray = useCallback(async () => {
@@ -30,7 +30,7 @@ function TransactionTable() {
  }
 
  async function handleDeleteTransaction(transactionToRemove) {
-  let newTransaction = transactions.filter(t => t !== transactionToRemove)
+  let newTransaction = transactions.filter(t => t !== transactionToRemove);
   setTransactions(newTransaction);
   await removeTransaction(transactionToRemove.id);
  }
