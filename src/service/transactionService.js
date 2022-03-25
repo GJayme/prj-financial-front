@@ -25,5 +25,13 @@ const removeTransaction = async (transactionId) => {
  }
 };
 
+const editTransaction = async (transaction) => {
+ try {
+  let response = await axios.put('http://localhost:4200/transactions/' + transaction.id, transaction);
+  return response.data;
+ } catch (e) {
+  console.log(e);
+ }
+};
 
-export { findAllTransaction, addNewTransaction, removeTransaction };
+export { findAllTransaction, addNewTransaction, removeTransaction, editTransaction };

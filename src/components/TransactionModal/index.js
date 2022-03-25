@@ -10,11 +10,12 @@ import MDButton from '../common/MDButton';
 import { useMaterialUIController } from '../../context';
 import { useTransaction } from '../../context/transaction';
 
-import { addNewTransaction } from '../../service/transactionService';
+import { addNewTransaction, editTransaction } from '../../service/transactionService';
 
 const Modal = props => {
  const {transactions, setTransactions} = useTransaction();
- const [transactionToAdd, setTransaction] = useState({});
+ const [transactionToAdd, setTransactionToAdd] = useState({});
+ const [oldTransaction, setOldTransaction] = useState({});
  const [controller] = useMaterialUIController();
  const {sidenavColor} = controller;
  const closeOnEscapeKeyDown = e => {
@@ -22,6 +23,20 @@ const Modal = props => {
    props.onClose();
   }
  };
+
+ useEffect(() => {
+  if (props.editTransaction !== null) {
+   let editTransaction = {
+    value: props.editTransaction.value,
+    date: props.editTransaction.date,
+    type: props.editTransaction.type,
+    category: props.editTransaction.category,
+    id: props.editTransaction.id
+   };
+   setTransactionToAdd(editTransaction);
+   setOldTransaction(editTransaction);
+  }
+ }, [props.editTransaction])
 
  useEffect(() => {
   document.body.addEventListener('keydown', closeOnEscapeKeyDown);
@@ -33,7 +48,16 @@ const Modal = props => {
  async function handleAddNewTransaction() {
   let response = await addNewTransaction(transactionToAdd);
   setTransactions([...transactions, response]);
-  setTransaction({});
+  setTransactionToAdd({});
+  props.onClose();
+ }
+
+ async function handleEditTransaction() {
+
+  let transactionsWithoutOldTransaction = transactions.filter(t => t.id !== oldTransaction.id);
+  let response = await editTransaction(transactionToAdd);
+  setTransactions([...transactionsWithoutOldTransaction, response]);
+  setTransactionToAdd({});
   props.onClose();
  }
 
@@ -56,41 +80,88 @@ const Modal = props => {
        </Icon>
       </div>
       <div className="modal-body">
-       <MDInput
-         className="input"
-         type="number"
-         label="Value"
-         style={{width: '300px'}}
-         onChange={e => setTransaction({...transactionToAdd, value: e.target.value})}
-       />
-       <MDInput
-         className="input"
-         type="date"
-         style={{width: '300px'}}
-         onChange={e => setTransaction({...transactionToAdd, date: e.target.value})}
-       />
-       <MDInput
-         className="input"
-         label="Type"
-         style={{width: '300px'}}
-         onChange={e => setTransaction({...transactionToAdd, type: e.target.value})}/>
-       <MDInput
-         className="input"
-         label="Category"
-         style={{width: '300px'}}
-         onChange={e => setTransaction({...transactionToAdd, category: e.target.value})}/>
+       {props.editTransaction !== null ?
+         <>
+          <MDInput
+            className="input"
+            type="number"
+            label="Value"
+            style={{width: '300px'}}
+            defaultValue = {props.editTransaction.value}
+            onChange={e => setTransactionToAdd({...transactionToAdd, value: e.target.value})}
+          />
+          <MDInput
+            className="input"
+            type="date"
+            style={{width: '300px'}}
+            defaultValue = {props.editTransaction.date}
+            onChange={e => setTransactionToAdd({...transactionToAdd, date: e.target.value})}
+          />
+          <MDInput
+            className="input"
+            label="Type"
+            style={{width: '300px'}}
+            defaultValue = {props.editTransaction.type}
+            onChange={e => setTransactionToAdd({...transactionToAdd, type: e.target.value})}/>
+          <MDInput
+            className="input"
+            label="Category"
+            style={{width: '300px'}}
+            defaultValue = {props.editTransaction.category}
+            onChange={e => setTransactionToAdd({...transactionToAdd, category: e.target.value})}/>
 
-       <MDButton
-         className="buttonAdd"
-         component="a"
-         onClick={() => handleAddNewTransaction()}
-         rel="noreferrer"
-         variant="gradient"
-         color={sidenavColor}
-         size="medium"
-       >
-        Add
-       </MDButton>
+          <MDButton
+            className="buttonAdd"
+            component="a"
+            onClick={() => handleEditTransaction()}
+            rel="noreferrer"
+            variant="gradient"
+            color={sidenavColor}
+            size="medium"
+          >
+           Edit
+          </MDButton>
+         </>
+         :
+         <>
+          <MDInput
+            className="input"
+            type="number"
+            label="Value"
+            style={{width: '300px'}}
+            onChange={e => setTransactionToAdd({...transactionToAdd, value: e.target.value})}
+          />
+          <MDInput
+            className="input"
+            type="date"
+            style={{width: '300px'}}
+            onChange={e => setTransactionToAdd({...transactionToAdd, date: e.target.value})}
+          />
+          <MDInput
+            className="input"
+            label="Type"
+            style={{width: '300px'}}
+            onChange={e => setTransactionToAdd({...transactionToAdd, type: e.target.value})}/>
+          <MDInput
+            className="input"
+            label="Category"
+            style={{width: '300px'}}
+            onChange={e => setTransactionToAdd({...transactionToAdd, category: e.target.value})}/>
+
+          <MDButton
+            className="buttonAdd"
+            component="a"
+            onClick={() => handleAddNewTransaction()}
+            rel="noreferrer"
+            variant="gradient"
+            color={sidenavColor}
+            size="medium"
+          >
+           Add
+          </MDButton>
+         </>
+       }
+
       </div>
      </div>
     </div>

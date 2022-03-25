@@ -13,7 +13,7 @@ import { useTransaction } from '../../context/transaction';
 
 function TransactionTable() {
  const [openAddTransactionMenu, setOpenAddTransactionMenu] = useState(false);
- const [editTransaction, setEditTransaction] = useState({});
+ const [editTransaction, setEditTransaction] = useState(null);
  const {transactions, setTransactions} = useTransaction();
 
  const allTransactionArray = useCallback(async () => {
@@ -25,8 +25,14 @@ function TransactionTable() {
   allTransactionArray().then();
  }, [allTransactionArray]);
 
+ function handleAddTransaction() {
+  setEditTransaction(null);
+  setOpenAddTransactionMenu(true)
+ }
+
  function handleEditTransaction(transaction) {
-  console.log(transaction);
+  setEditTransaction(transaction);
+  setOpenAddTransactionMenu(true);
  }
 
  async function handleDeleteTransaction(transactionToRemove) {
@@ -121,7 +127,7 @@ function TransactionTable() {
             disableRipple
             color="secondary"
             sx={navbarIconButton}
-            onClick={() => setOpenAddTransactionMenu(true)}
+            onClick={() => handleAddTransaction()}
           >
            <Icon>add_icon</Icon>
           </IconButton>
@@ -142,7 +148,10 @@ function TransactionTable() {
      </Grid>
     </Grid>
 
-    <Modal title="Add new transaction" onClose={() => setOpenAddTransactionMenu(false)} show={openAddTransactionMenu}/>
+    <Modal title="Add new transaction"
+           onClose={() => setOpenAddTransactionMenu(false)}
+           show={openAddTransactionMenu}
+           editTransaction={editTransaction}/>
    </MDBox>);
 }
 

@@ -1,25 +1,18 @@
 {
   "transactions": [
     {
-      "value": "1",
-      "date": "2022-03-17",
-      "type": "a",
-      "category": "a",
+      "value": "11",
+      "date": "2022-03-11",
+      "type": "Teste 11",
+      "category": "Teste 11",
       "id": 1
     },
     {
       "value": "2",
-      "date": "2022-03-17",
-      "type": "b",
-      "category": "b",
-      "id": 2
-    },
-    {
-      "value": "3",
-      "date": "2022-03-18",
+      "date": "2022-03-10",
       "type": "c",
       "category": "c",
-      "id": 3
+      "id": 2
     }
   ]
 }
