@@ -1,41 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
-
-// react-router components
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-
-// @mui material components
+import { useEffect, useState } from 'react';
+import { Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Icon from '@mui/material/Icon';
-
-// Material Dashboard 2 React components
 import MDBox from 'components/common/MDBox';
-
-// Material Dashboard 2 React example components
 import Sidenav from 'components/Sidenav';
 import Configurator from 'components/Configurator';
-
-// Material Dashboard 2 React themes
 import theme from 'assets/theme';
-import themeRTL from 'assets/theme/theme-rtl';
-
-// Material Dashboard 2 React Dark Mode themes
 import themeDark from 'assets/theme-dark';
-import themeDarkRTL from 'assets/theme-dark/theme-rtl';
-
-// RTL plugins
-import rtlPlugin from 'stylis-plugin-rtl';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-// Material Dashboard 2 React routes
-import routes from 'routes';
+import { RoutesApp } from 'routes';
 import sidenavRoutes from './components/Sidenav/SidenavRoutes';
-
-// Material Dashboard 2 React contexts
 import { setMiniSidenav, setOpenConfigurator, useMaterialUIController } from 'context';
-
-// Images
 import brandWhite from 'assets/images/logo-ct.png';
 import brandDark from 'assets/images/logo-ct-dark.png';
 
@@ -52,18 +27,7 @@ export default function App() {
   darkMode
  } = controller;
  const [onMouseEnter, setOnMouseEnter] = useState(false);
- const [rtlCache, setRtlCache] = useState(null);
  const {pathname} = useLocation();
-
- // Cache for the rtl
- useMemo(() => {
-  const cacheRtl = createCache({
-   key: 'rtl',
-   stylisPlugins: [rtlPlugin]
-  });
-
-  setRtlCache(cacheRtl);
- }, []);
 
  // Open sidenav when mouse enter on mini sidenav
  const handleOnMouseEnter = () => {
@@ -132,32 +96,7 @@ export default function App() {
    </MDBox>
  );
 
- return direction === 'rtl' ? (
-   <CacheProvider value={rtlCache}>
-    <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
-     <CssBaseline/>
-     {layout === 'dashboard' && (
-       <>
-        <Sidenav
-          color={sidenavColor}
-          brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-          brandName="Financial flow"
-          routes={sidenavRoutes}
-          onMouseEnter={handleOnMouseEnter}
-          onMouseLeave={handleOnMouseLeave}
-        />
-        <Configurator/>
-        {configsButton}
-       </>
-     )}
-     {layout === 'vr' && <Configurator/>}
-     <Routes>
-      {getRoutes(routes)}
-      <Route path="*" element={<Navigate to="/dashboard"/>}/>
-     </Routes>
-    </ThemeProvider>
-   </CacheProvider>
- ) : (
+ return (
    <ThemeProvider theme={darkMode ? themeDark : theme}>
     <CssBaseline/>
     {layout === 'dashboard' && (
@@ -175,10 +114,11 @@ export default function App() {
       </>
     )}
     {layout === 'vr' && <Configurator/>}
-    <Routes>
-     {getRoutes(routes)}
-     <Route path="*" element={<Navigate to="/dashboard"/>}/>
-    </Routes>
+    <RoutesApp/>
+    {/*<Routes>*/}
+    {/* {getRoutes(routes)}*/}
+    {/* <Route path="*" element={<Navigate to="/dashboard"/>}/>*/}
+    {/*</Routes>*/}
    </ThemeProvider>
  );
 }

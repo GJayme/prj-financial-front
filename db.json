@@ -1,18 +1,19 @@
 {
   "transactions": [
     {
-      "value": "11",
-      "date": "2022-03-11",
-      "type": "Teste 11",
-      "category": "Teste 11",
-      "id": 1
-    },
-    {
-      "value": "2",
-      "date": "2022-03-10",
-      "type": "c",
-      "category": "c",
+      "value": "20",
+      "date": "2022-03-16",
+      "type": "b",
+      "category": "b",
       "id": 2
+    }
+  ],
+  "users": [
+    {
+      "name": "Gabriel",
+      "email": "mail.com",
+      "password": "123",
+      "id": 1
     }
   ]
 }
