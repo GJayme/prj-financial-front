@@ -3,14 +3,14 @@ import {createContext, useContext, useState} from 'react';
 const TransactionContext = createContext();
 
 export function TransactionProvider({children}) {
- const [userId, setUserId] = useState(-1);
+ const [userLogged, setUserLogged] = useState(null);
  const [transactions, setTransactions] = useState(null)
 
  return (
    <TransactionContext.Provider
      value={{
-      userId,
-      setUserId,
+      userLogged,
+      setUserLogged,
       transactions: transactions,
       setTransactions: setTransactions
      }}
@@ -22,6 +22,6 @@ export function TransactionProvider({children}) {
 
 export function useTransaction() {
  const context = useContext(TransactionContext);
- const {userId, setUserId, transactions, setTransactions} = context;
- return {userId, setUserId, transactions, setTransactions};
+ const {userLogged, setUserLogged, transactions, setTransactions} = context;
+ return {userLogged, setUserLogged, transactions, setTransactions};
 }
