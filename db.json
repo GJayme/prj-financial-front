@@ -1,11 +1,11 @@
 {
   "transactions": [
     {
-      "value": "40.0",
-      "date": "2022-03-17",
-      "type": "Bar",
-      "category": "Ceva",
-      "id": 4
+      "value": "20",
+      "date": "2022-03-16",
+      "type": "b",
+      "category": "b",
+      "id": 2
     }
   ],
   "users": [
