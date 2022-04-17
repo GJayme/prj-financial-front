@@ -9,10 +9,17 @@ import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
 import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
 import Footer from '../../components/Footer';
 import { TransactionTable } from '../../components/TransactionTable';
+import { useTransaction } from '../../context/transaction';
+import { getIncomeTransactions, getBalanceMonthly } from '../../service/incomeService';
 
 
 function Dashboard() {
  const {sales, tasks} = reportsLineChartData;
+ const {transactions} = useTransaction();
+
+ const incomeTransaction = getIncomeTransactions(transactions, "deposit");
+ const withdrawTransaction = getIncomeTransactions(transactions, "withdraw");
+ const balanceTransaction = getBalanceMonthly(transactions);
 
  return (
    <DashboardLayout>
@@ -22,14 +29,14 @@ function Dashboard() {
       <Grid item xs={12} md={6} lg={3}>
        <MDBox mb={1.5}>
         <ComplexStatisticsCard
-          color="dark"
-          icon="weekend"
-          title="Bookings"
-          count={281}
+          color="success"
+          icon="arrow_downward"
+          title="Income"
+          count={`R$ ${incomeTransaction}`}
           percentage={{
            color: 'success',
            amount: '+55%',
-           label: 'than lask week'
+           label: 'month'
           }}
         />
        </MDBox>
@@ -37,13 +44,14 @@ function Dashboard() {
       <Grid item xs={12} md={6} lg={3}>
        <MDBox mb={1.5}>
         <ComplexStatisticsCard
-          icon="leaderboard"
-          title="Today's Users"
-          count="2,300"
+          color="error"
+          icon="arrow_upward"
+          title="Cash out"
+          count={`R$ ${withdrawTransaction}`}
           percentage={{
            color: 'success',
            amount: '+3%',
-           label: 'than last month'
+           label: 'month'
           }}
         />
        </MDBox>
@@ -51,33 +59,32 @@ function Dashboard() {
       <Grid item xs={12} md={6} lg={3}>
        <MDBox mb={1.5}>
         <ComplexStatisticsCard
-          color="success"
-          icon="store"
-          title="Revenue"
-          count="34k"
+          icon="balance"
+          title="Balance"
+          count={`R$ ${balanceTransaction}`}
           percentage={{
            color: 'success',
            amount: '+1%',
-           label: 'than yesterday'
+           label: 'month'
           }}
         />
        </MDBox>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
-       <MDBox mb={1.5}>
-        <ComplexStatisticsCard
-          color="primary"
-          icon="person_add"
-          title="Followers"
-          count="+91"
-          percentage={{
-           color: 'success',
-           amount: '',
-           label: 'Just updated'
-          }}
-        />
-       </MDBox>
-      </Grid>
+      {/*<Grid item xs={12} md={6} lg={3}>*/}
+      {/* <MDBox mb={1.5}>*/}
+      {/*  <ComplexStatisticsCard*/}
+      {/*    color="primary"*/}
+      {/*    icon="person_add"*/}
+      {/*    title="Followers"*/}
+      {/*    count="+91"*/}
+      {/*    percentage={{*/}
+      {/*     color: 'success',*/}
+      {/*     amount: '',*/}
+      {/*     label: 'Just updated'*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/* </MDBox>*/}
+      {/*</Grid>*/}
      </Grid>
      <MDBox mt={4.5}>
       <Grid container spacing={3}>
