@@ -27,10 +27,10 @@ const Modal = props => {
  useEffect(() => {
   if (props.editTransaction !== null) {
    let editTransaction = {
-    value: props.editTransaction.value,
+    amount: props.editTransaction.amount,
     date: props.editTransaction.date,
     type: props.editTransaction.type,
-    category: props.editTransaction.category,
+    description: props.editTransaction.description,
     id: props.editTransaction.id
    };
    setTransactionToAdd(editTransaction);
@@ -85,10 +85,10 @@ const Modal = props => {
           <MDInput
             className="input"
             type="number"
-            label="Value"
+            label="Amount"
             style={{width: '300px'}}
-            defaultValue = {props.editTransaction.value}
-            onChange={e => setTransactionToAdd({...transactionToAdd, value: e.target.value})}
+            defaultValue = {props.editTransaction.amount}
+            onChange={e => setTransactionToAdd({...transactionToAdd, amount: e.target.value})}
           />
           <MDInput
             className="input"
@@ -105,10 +105,10 @@ const Modal = props => {
             onChange={e => setTransactionToAdd({...transactionToAdd, type: e.target.value})}/>
           <MDInput
             className="input"
-            label="Category"
+            label="Description"
             style={{width: '300px'}}
-            defaultValue = {props.editTransaction.category}
-            onChange={e => setTransactionToAdd({...transactionToAdd, category: e.target.value})}/>
+            defaultValue = {props.editTransaction.description}
+            onChange={e => setTransactionToAdd({...transactionToAdd, description: e.target.value})}/>
 
           <MDButton
             className="buttonAdd"
@@ -127,9 +127,9 @@ const Modal = props => {
           <MDInput
             className="input"
             type="number"
-            label="Value"
+            label="Amount"
             style={{width: '300px'}}
-            onChange={e => setTransactionToAdd({...transactionToAdd, value: e.target.value})}
+            onChange={e => setTransactionToAdd({...transactionToAdd, amount: e.target.value})}
           />
           <MDInput
             className="input"
@@ -144,9 +144,9 @@ const Modal = props => {
             onChange={e => setTransactionToAdd({...transactionToAdd, type: e.target.value})}/>
           <MDInput
             className="input"
-            label="Category"
+            label="Description"
             style={{width: '300px'}}
-            onChange={e => setTransactionToAdd({...transactionToAdd, category: e.target.value})}/>
+            onChange={e => setTransactionToAdd({...transactionToAdd, description: e.target.value})}/>
 
           <MDButton
             className="buttonAdd"
@@ -161,7 +161,6 @@ const Modal = props => {
           </MDButton>
          </>
        }
-
       </div>
      </div>
     </div>

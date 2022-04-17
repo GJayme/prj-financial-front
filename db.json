@@ -1,11 +1,34 @@
 {
   "transactions": [
     {
-      "value": "20",
-      "date": "2022-03-16",
-      "type": "b",
-      "category": "b",
-      "id": 2
+      "accountId": 1,
+      "id": 1,
+      "amount": "3300",
+      "date": "2020-04-14T10:45:07.719",
+      "type": "deposit",
+      "description": "Salário",
+      "currencyCode": "BRL",
+      "received": "true"
+    },
+    {
+      "accountId": 1,
+      "id": 2,
+      "amount": "2000",
+      "date": "2020-04-15T10:45:07.719",
+      "type": "deposit",
+      "description": "Freela",
+      "currencyCode": "BRL",
+      "received": "true"
+    },
+    {
+      "accountId": 1,
+      "id": 3,
+      "amount": "700",
+      "date": "2020-04-16T10:45:07.719",
+      "type": "withdraw",
+      "description": "Mercado",
+      "currencyCode": "BRL",
+      "received": "true"
     }
   ],
   "users": [

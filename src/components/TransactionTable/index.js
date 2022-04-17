@@ -53,10 +53,10 @@ function TransactionTable() {
 
   for (const transaction of transactions) {
    const transactionElement = {
-    value: transaction.value,
+    amount: transaction.amount,
     date: transaction.date,
     type: transaction.type,
-    category: transaction.category,
+    description: transaction.description,
     actions: (
       <MDBox lineHeight={1} textAlign="left" display="flex">
        <IconButton
@@ -86,10 +86,10 @@ function TransactionTable() {
  }
 
  const columns = [
-  {Header: 'value', accessor: 'value', align: 'left'},
+  {Header: 'amount', accessor: 'amount', align: 'left'},
   {Header: 'date', accessor: 'date', align: 'center'},
   {Header: 'type', accessor: 'type', align: 'center'},
-  {Header: 'category', accessor: 'category', align: 'center'},
+  {Header: 'description', accessor: 'description', align: 'center'},
   {Header: 'actions', accessor: 'actions', align: 'center'}
  ];
 
