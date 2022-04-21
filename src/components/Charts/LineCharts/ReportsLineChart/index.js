@@ -1,21 +1,11 @@
 import { useMemo } from 'react';
-
-// porp-types is a library for typechecking of props
 import PropTypes from 'prop-types';
-
-// react-chartjs-2 components
 import { Line } from 'react-chartjs-2';
-
-// @mui material components
 import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
 import Icon from '@mui/material/Icon';
-
-// Material Dashboard 2 React components
 import MDBox from 'components/common/MDBox';
 import MDTypography from 'components/common/MDTypography';
-
-// ReportsLineChart configurations
 import configs from 'components/Charts/LineCharts/ReportsLineChart/configs';
 
 function ReportsLineChart({color, title, description, date, chart}) {
@@ -34,7 +24,7 @@ function ReportsLineChart({color, title, description, date, chart}) {
            py={2}
            pr={0.5}
            mt={-5}
-           height="12.5rem"
+           height="16.0rem"
          >
           <Line data={data} options={options}/>
          </MDBox>

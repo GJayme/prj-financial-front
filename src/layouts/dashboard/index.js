@@ -2,23 +2,21 @@ import Grid from '@mui/material/Grid';
 import MDBox from 'components/common/MDBox';
 import DashboardLayout from 'components/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'components/Navbars/DashboardNavbar';
-import ReportsBarChart from 'components/Charts/BarCharts/ReportsBarChart';
 import ReportsLineChart from 'components/Charts/LineCharts/ReportsLineChart';
 import ComplexStatisticsCard from 'components/Cards/StatisticsCards/ComplexStatisticsCard';
-import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
-import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
 import Footer from '../../components/Footer';
 import { TransactionTable } from '../../components/TransactionTable';
 import { useTransaction } from '../../context/transaction';
-import { getIncomeTransactions, getBalanceMonthly } from '../../service/incomeService';
+import { getBalanceMonthly, getIncomeTransactions, getMonthIncomeArray } from '../../service/incomeService';
 
 
 function Dashboard() {
- const {sales, tasks} = reportsLineChartData;
  const {transactions} = useTransaction();
 
- const incomeTransaction = getIncomeTransactions(transactions, "deposit");
- const withdrawTransaction = getIncomeTransactions(transactions, "withdraw");
+ const {income} = getMonthIncomeArray(transactions, 'deposit');
+ const {cashOut} = getMonthIncomeArray(transactions, 'withdraw');
+ const incomeTransaction = getIncomeTransactions(transactions, 'deposit');
+ const withdrawTransaction = getIncomeTransactions(transactions, 'withdraw');
  const balanceTransaction = getBalanceMonthly(transactions);
 
  return (
@@ -26,7 +24,7 @@ function Dashboard() {
     <DashboardNavbar/>
     <MDBox py={3}>
      <Grid container spacing={3}>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={6} lg={4}>
        <MDBox mb={1.5}>
         <ComplexStatisticsCard
           color="success"
@@ -41,7 +39,7 @@ function Dashboard() {
         />
        </MDBox>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={6} lg={4}>
        <MDBox mb={1.5}>
         <ComplexStatisticsCard
           color="error"
@@ -56,7 +54,7 @@ function Dashboard() {
         />
        </MDBox>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={6} lg={4}>
        <MDBox mb={1.5}>
         <ComplexStatisticsCard
           icon="balance"
@@ -88,40 +86,40 @@ function Dashboard() {
      </Grid>
      <MDBox mt={4.5}>
       <Grid container spacing={3}>
-       <Grid item xs={12} md={6} lg={4}>
-        <MDBox mb={3}>
-         <ReportsBarChart
-           color="info"
-           title="website views"
-           description="Last Campaign Performance"
-           date="campaign sent 2 days ago"
-           chart={reportsBarChartData}
-         />
-        </MDBox>
-       </Grid>
-       <Grid item xs={12} md={6} lg={4}>
+       {/*<Grid item xs={12} md={6} lg={4}>*/}
+       {/* <MDBox mb={3}>*/}
+       {/*  <ReportsBarChart*/}
+       {/*    color="info"*/}
+       {/*    title="website views"*/}
+       {/*    description="Last Campaign Performance"*/}
+       {/*    date="campaign sent 2 days ago"*/}
+       {/*    chart={reportsBarChartData}*/}
+       {/*  />*/}
+       {/* </MDBox>*/}
+       {/*</Grid>*/}
+       <Grid item xs={12} md={6} lg={6}>
         <MDBox mb={3}>
          <ReportsLineChart
            color="success"
-           title="daily sales"
+           title="month income"
            description={
             <>
              (<strong>+15%</strong>) increase in today sales.
             </>
            }
            date="updated 4 min ago"
-           chart={sales}
+           chart={income}
          />
         </MDBox>
        </Grid>
-       <Grid item xs={12} md={6} lg={4}>
+       <Grid item xs={12} md={6} lg={6}>
         <MDBox mb={3}>
          <ReportsLineChart
-           color="dark"
-           title="completed tasks"
+           color="error"
+           title="month cash out"
            description="Last Campaign Performance"
            date="just updated"
-           chart={tasks}
+           chart={cashOut}
          />
         </MDBox>
        </Grid>
