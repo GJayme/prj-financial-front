@@ -1,8 +1,6 @@
 import Dashboard from "layouts/dashboard";
 import {Transactions} from 'layouts/transaction';
 import Profile from "layouts/profile";
-
-// @mui icons
 import Icon from "@mui/material/Icon";
 import {Analysis} from "../../layouts/analysis";
 

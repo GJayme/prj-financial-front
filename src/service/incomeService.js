@@ -1,3 +1,5 @@
+import {number} from "prop-types";
+
 const getIncomeTransactions = (transactions, type) => {
  if (!isTransactionValid(transactions)) {
   return 0.0;
@@ -67,8 +69,36 @@ const getMonthIncomeArray = (transactions, type) => {
  return getTransactionGraphData(type, monthlyIncomeArray);
 };
 
+const getIncomeValues = (transactions) => {
+ let income = 0;
+ if (!isTransactionValid(transactions)) {
+  return income;
+ }
+
+ for (const transaction of transactions) {
+  if (transaction.type === 'deposit') {
+   income += parseFloat(transaction.amount)
+  }
+ }
+ return income;
+}
+
+const getCashOutValues = (transactions) => {
+ let cashOut = 0;
+ if (!isTransactionValid(transactions)) {
+  return cashOut;
+ }
+
+ for (const transaction of transactions) {
+  if (transaction.type === 'withdraw') {
+   cashOut += parseFloat(transaction.amount)
+  }
+ }
+ return cashOut;
+}
+
 const isTransactionValid = (transactions) => {
  return !(transactions === null || transactions === undefined);
 };
 
-export { getIncomeTransactions, getBalanceMonthly, getMonthIncomeArray };
+export { getIncomeTransactions, getIncomeValues, getCashOutValues, getBalanceMonthly, getMonthIncomeArray };

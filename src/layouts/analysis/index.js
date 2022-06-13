@@ -4,23 +4,22 @@ import Footer from 'components/Footer';
 import {useTransaction} from '../../context/transaction';
 import {useCallback, useEffect} from 'react';
 import {findAllTransaction} from '../../service/transactionService';
-import {getMonthIncomeArray} from "../../service/incomeService";
+import {getIncomeValues, getCashOutValues} from "../../service/incomeService";
 import {Pie} from "react-chartjs-2";
 import MDBox from "../../components/common/MDBox";
-import Grid from "@mui/material/Grid";
 import MDTypography from "../../components/common/MDTypography";
 import Card from "@mui/material/Card";
 
 
 function Analysis() {
     const {transactions, setTransactions} = useTransaction();
-    const {income} = getMonthIncomeArray(transactions, 'deposit');
-    const {cashOut} = getMonthIncomeArray(transactions, 'withdraw');
+    const income = getIncomeValues(transactions);
+    const cashOut = getCashOutValues(transactions);
 
     const data = {
         datasets: [{
-            label: 'Fluxo mensal',
-            data: [50, 100],
+            label: 'Accumulated flow',
+            data: [cashOut, income],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)'],
@@ -43,7 +42,7 @@ function Analysis() {
                 <DashboardNavbar/>
                 <MDBox mb={3}>
                     <Card sx={{height: '100%', justifyContent: 'center', alignItems: 'center'}}>
-                        <MDTypography variant="h6" textTransform="capitalize">Monthly flow</MDTypography>
+                        <MDTypography variant="h6" textTransform="capitalize">Accumulated flow</MDTypography>
                         <MDBox>
                             <Pie data={data} style={{width: '500px'}}/>
                         </MDBox>
