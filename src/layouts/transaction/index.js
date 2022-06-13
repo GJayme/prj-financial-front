@@ -1,6 +1,3 @@
-// @mui material components
-// Material Dashboard 2 React components
-
 import DashboardLayout from 'components/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'components/Navbars/DashboardNavbar';
 import Footer from 'components/Footer';
